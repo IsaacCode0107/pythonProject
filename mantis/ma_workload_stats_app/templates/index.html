@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MA WorkLoad 統計</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Arial', 'Microsoft JhengHei', sans-serif;
+            background: #fafbfc;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        #report-table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 30px 0 0 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        #report-table th,
+        #report-table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 14px;
+            text-align: center;
+        }
+
+        #report-table th {
+            background: #2d3e50;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.08em;
+        }
+
+        #report-table tr:nth-child(even) {
+            background: #f5f7fa;
+        }
+
+        #report-table tr:hover {
+            background: #eaf3fb;
+        }
+
+        form {
+            margin-bottom: 18px;
+        }
+
+        select,
+        button {
+            font-size: 1em;
+            padding: 4px 8px;
+            margin-right: 8px;
+        }
+
+        label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MA WorkLoad 統計</h1>
+    <form method="get" action="/">
+        <label for="mode">選擇模式:</label>
+        <select name="mode" id="mode">
+            <option value="monthly" {% if mode=='monthly' %}selected{% endif %}>每月</option>
+            <option value="weekly" {% if mode=='weekly' %}selected{% endif %}>每週</option>
+            <option value="monthly_assignee" {% if mode=='monthly_assignee' %}selected{% endif %}>每月&分配給</option>
+            <option value="weekly_assignee" {% if mode=='weekly_assignee' %}selected{% endif %}>每週&分配給</option>
+        </select>
+
+        <label for="assignee">分配給:</label>
+        <select name="assignee" id="assignee">
+            <option value="">全部</option>
+            {% for assignee in assignees %}
+            <option value="{{ assignee }}" {% if assignee==selected_assignee %}selected{% endif %}>{{ assignee }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">查詢</button>
+    </form>
+    {{ table_html|safe }}
+</body>
+
+</html>

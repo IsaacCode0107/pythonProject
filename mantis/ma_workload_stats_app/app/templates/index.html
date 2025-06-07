@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA WorkLoad Statistics</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">MA WorkLoad Statistics</h1>
+        <div class="mt-4">
+            <h2>Statistics Overview</h2>
+            <form id="statsForm">
+                <div class="form-group">
+                    <label for="timeframe">Select Timeframe:</label>
+                    <select class="form-control" id="timeframe" name="timeframe">
+                        <option value="bi-weekly">Bi-Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="personnel">Select Personnel:</label>
+                    <input type="text" class="form-control" id="personnel" name="personnel" placeholder="Enter personnel name">
+                </div>
+                <div class="form-group">
+                    <label for="team">Select Team:</label>
+                    <input type="text" class="form-control" id="team" name="team" placeholder="Enter team name">
+                </div>
+                <button type="submit" class="btn btn-primary">Get Statistics</button>
+            </form>
+        </div>
+        <div id="results" class="mt-4"></div>
+    </div>
+
+    <script>
+        document.getElementById('statsForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const timeframe = document.getElementById('timeframe').value;
+            const personnel = document.getElementById('personnel').value;
+            const team = document.getElementById('team').value;
+
+            // Fetch statistics from the server (to be implemented)
+            // Example: fetch(`/api/stats?timeframe=${timeframe}&personnel=${personnel}&team=${team}`)
+            // .then(response => response.json())
+            // .then(data => {
+            //     document.getElementById('results').innerHTML = JSON.stringify(data);
+            // });
+        });
+    </script>
+</body>
+</html>
